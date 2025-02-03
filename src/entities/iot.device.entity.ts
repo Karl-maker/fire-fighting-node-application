@@ -9,18 +9,18 @@ import { IotDeviceConstructorInput } from "../types/types/ios.device.type";
  */
 
 export class IotDevice implements Entity {
-    id: string | null;
-    name: string;
-    deviceType: DeviceType;
-    firmwareVersion: string;
-    status: DeviceStatus;
-    lastSeenAt: Date | null;
-    ipAddress: string | null;
-    position: string;
-    location: string | null;
-    metadata: Record<string, string | number>;
-    createdAt: Date;
-    updatedAt: Date;
+    id!: string | null;
+    name!: string;
+    type!: DeviceType;
+    firmwareVersion!: string;
+    status!: DeviceStatus;
+    lastSeenAt!: Date | null;
+    ipAddress!: string | null;
+    position!: string | null;
+    location!: string | null;
+    metadata!: Record<string, string | number>;
+    createdAt!: Date;
+    updatedAt!: Date;
 
     constructor(params: IotDeviceConstructorInput) {
         Object.assign(this, params);
