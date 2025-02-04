@@ -1,6 +1,7 @@
 import { DeviceStatus, DeviceType } from "../types/enums/iot.device.enum";
 import { Entity } from "../types/interfaces/base.entity";
 import { IotDeviceConstructorInput } from "../types/types/ios.device.type";
+import { Location } from "../types/types/location.type";
 
 /**
  * @author Karl-Johan Bailey
@@ -17,7 +18,7 @@ export class IotDevice implements Entity {
     lastSeenAt!: Date | null;
     ipAddress!: string | null;
     position!: string | null;
-    location!: string | null;
+    location!: Location | null;
     metadata!: Record<string, string | number>;
     createdAt!: Date;
     updatedAt!: Date;
