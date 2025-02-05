@@ -8,6 +8,7 @@ export class IotDeviceController {
     
     async create (req: Request, res: Response, next: NextFunction) : Promise<void>  {
         try {
+            
             logger.debug('Enter IotDeviceController.create()')
             const createUseCase = new CreateIotDeviceUseCase(this.repository)
             const {
