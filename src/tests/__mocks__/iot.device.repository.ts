@@ -1,5 +1,5 @@
-import { IotDeviceRepository } from "../domain/repositories/iot.device.repository";
-import { IotDevice } from "../domain/entities/iot.device.entity";
+import { IotDeviceRepository } from "../../domain/repositories/iot.device.repository";
+import { IotDevice } from "../../domain/entities/iot.device.entity";
 
 export class MockIotDeviceRepository implements IotDeviceRepository {
     // Mock the save method to return a resolved promise with a device that includes an id
