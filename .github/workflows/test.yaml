@@ -35,9 +35,7 @@ jobs:
         run: npm i -g pnpm
 
       - name: Install Dependencies 📦
-        run: |
-          corepack enable
-          pnpm install 
+        run: pnpm install 
 
       - name: Build Docker Image 🐋 
         run: docker build -t app .
