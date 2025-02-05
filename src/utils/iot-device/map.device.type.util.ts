@@ -1,4 +1,4 @@
-import { DeviceType } from "../../types/enums/iot.device.enum";
+import { DeviceType } from "../../domain/types/enums/iot.device.enum";
 
 export function mapDeviceType(type: string) : DeviceType {
     switch (true) {

@@ -1,6 +1,6 @@
 import { CreateIotDeviceUseCase } from "../../use-cases/iot-device/create.iot.device.usecase";
 import { IotDeviceRepository } from "../../repositories/iot.device.repository";
-import { DeviceStatus } from "../../types/enums/iot.device.enum";
+import { DeviceStatus } from "../../domain/types/enums/iot.device.enum";
 import { IotDevice } from "../../entities/iot.device.entity";
 import { mapDeviceType } from "../../utils/iot-device/map.device.type.util";
 

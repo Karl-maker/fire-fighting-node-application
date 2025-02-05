@@ -1,5 +1,5 @@
 import { mapDeviceStatus } from "../../utils/iot-device/map.device.status.utils";
-import { DeviceStatus } from "../../types/enums/iot.device.enum";
+import { DeviceStatus } from "../../domain/types/enums/iot.device.enum";
 
 describe("mapDeviceStatus", () => {
     it("should return DeviceStatus.ONLINE for 'online'", () => {

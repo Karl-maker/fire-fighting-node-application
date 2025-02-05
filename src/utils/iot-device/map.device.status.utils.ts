@@ -1,4 +1,4 @@
-import { DeviceStatus } from "../../types/enums/iot.device.enum";
+import { DeviceStatus } from "../../domain/types/enums/iot.device.enum";
 
 export function mapDeviceStatus(type: string) : DeviceStatus {
     switch (true) {

@@ -1,0 +1,1 @@
+export const IOT_DEVICE_SCHEMA = 'IotDevice'

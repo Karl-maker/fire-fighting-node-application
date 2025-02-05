@@ -1,5 +1,5 @@
 import { mapDeviceType } from "../../utils/iot-device/map.device.type.util";
-import { DeviceType } from "../../types/enums/iot.device.enum";
+import { DeviceType } from "../../domain/types/enums/iot.device.enum";
 
 describe("mapDeviceType", () => {
     it("should return DeviceType.VALVE for 'valve'", () => {

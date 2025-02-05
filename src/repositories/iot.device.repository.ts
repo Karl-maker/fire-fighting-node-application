@@ -1,5 +1,6 @@
 import { IotDevice } from "../entities/iot.device.entity";
+import { Repository } from "./repository";
 
-export interface IotDeviceRepository {
+export interface IotDeviceRepository extends Repository<IotDevice> {
     save(device: IotDevice): Promise<IotDevice>;
 }
