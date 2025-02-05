@@ -1,0 +1,67 @@
+name: Run Tests for Application
+
+on:
+  push:
+    branches:
+      - '**' 
+      paths-ignore:
+      - '**/*.md'
+      - '**/*.spec.ts'
+      - '**/*.test.ts'
+      - 'tests/**'
+
+  pull_request:
+    branches:
+      - '**' 
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.spec.ts'
+      - '**/*.test.ts'
+      - 'tests/**'
+
+jobs:
+  code-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ✅  
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Save Current Commit Hash 📝
+        id: save_commit
+        run: echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
+      - name: Set up Node.js 🏗️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install Dependencies 📦
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: Build Docker Image 🐋 
+        run: docker build -t app .
+
+      - name: Run Docker Container 🚀
+        run: |
+          docker run --rm -d --name app-container -p 3000:3000 \
+            -e NODE_ENV="test" \
+            -e PORT=3000 \
+            -e TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
+            app
+
+      - name: Wait for Server to Start ⏳
+        run: sleep 10 
+
+      - name: Run Unit Tests 🧪
+        run: pnpm test:unit
+
+      - name: Run End-to-End Tests 🔥
+        run: pnpm test:e2e
+
+      - name: Stop Docker Container 🛑
+        run: docker stop app-container
