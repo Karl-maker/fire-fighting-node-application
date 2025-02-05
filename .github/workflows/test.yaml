@@ -4,20 +4,14 @@ on:
   push:
     branches:
       - '**' 
-      paths-ignore:
+    paths-ignore:
       - '**/*.md'
-      - '**/*.spec.ts'
-      - '**/*.test.ts'
-      - 'tests/**'
 
   pull_request:
     branches:
       - '**' 
     paths-ignore:
       - '**/*.md'
-      - '**/*.spec.ts'
-      - '**/*.test.ts'
-      - 'tests/**'
 
 jobs:
   code-checks:
