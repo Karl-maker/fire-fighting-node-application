@@ -1,5 +1,5 @@
 import { Connection, Document, Model } from "mongoose";
-import { Repository } from "../../../repositories/repository";
+import { Repository } from "../../../domain/repositories/repository";
 import { Entity } from "../../../domain/types/interfaces/base.entity";
 
 

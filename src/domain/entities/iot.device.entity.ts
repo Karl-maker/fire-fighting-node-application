@@ -1,7 +1,7 @@
-import { DeviceStatus, DeviceType } from "../domain/types/enums/iot.device.enum";
-import { Entity } from "../domain/types/interfaces/base.entity";
-import { IotDeviceConstructorInput } from "../domain/types/types/ios.device.type";
-import { Location } from "../domain/types/types/location.type";
+import { DeviceStatus, DeviceType } from "../types/enums/iot.device.enum";
+import { Entity } from "../types/interfaces/base.entity";
+import { IotDeviceConstructorInput } from "../types/types/ios.device.type";
+import { Location } from "../types/types/location.type";
 
 /**
  * @author Karl-Johan Bailey

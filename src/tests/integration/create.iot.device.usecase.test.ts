@@ -1,10 +1,10 @@
-import { CreateIotDeviceUseCase } from "../../use-cases/iot-device/create.iot.device.usecase";
-import { IotDeviceRepository } from "../../repositories/iot.device.repository";
+import { CreateIotDeviceUseCase } from "../../application/use-cases/iot-device/create.iot.device.usecase";
+import { IotDeviceRepository } from "../../domain/repositories/iot.device.repository";
 import { DeviceStatus } from "../../domain/types/enums/iot.device.enum";
-import { IotDevice } from "../../entities/iot.device.entity";
+import { IotDevice } from "../../domain/entities/iot.device.entity";
 import { mapDeviceType } from "../../utils/iot-device/map.device.type.util";
 
-jest.mock("../../repositories/iot.device.repository");
+jest.mock("../../domain/repositories/iot.device.repository");
 
 describe("CreateIotDeviceUseCase", () => {
     let useCase: CreateIotDeviceUseCase;

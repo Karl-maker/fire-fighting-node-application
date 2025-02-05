@@ -1,6 +1,6 @@
 import { Connection } from "mongoose";
-import { IotDevice } from "../../../entities/iot.device.entity";
-import { IotDeviceRepository } from "../../../repositories/iot.device.repository";
+import { IotDevice } from "../../../domain/entities/iot.device.entity";
+import { IotDeviceRepository } from "../../../domain/repositories/iot.device.repository";
 import { IotDeviceDocument, IotDeviceSchema } from "../schemas/iot.device.mongoose.schema";
 import { MongooseRepository } from "./mongoose.repository";
 import { IOT_DEVICE_SCHEMA } from "../../../domain/constants/schemas";

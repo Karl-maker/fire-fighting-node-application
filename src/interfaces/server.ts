@@ -1,9 +1,11 @@
 import express from "express";
-import { iotDeviceRoutes } from "./routes/iot.device.routes";
-import { configuration } from "./config";
-import { IotDeviceMongooseRepository } from "./infrastructure/mongoose/repositories/iot.device.mongoose.repository";
-import { Database } from "./config/database";
-import { logger } from "./utils/logging";
+import { iotDeviceRoutes } from "../interfaces/http/routes/iot.device.routes";
+import { configuration } from "../config";
+import { IotDeviceMongooseRepository } from "../infrastructure/mongoose/repositories/iot.device.mongoose.repository";
+import { Database } from "../config/database";
+import { logger } from "../utils/logging";
+import { Routes } from "./routes";
+import { register } from "module";
 
 export const app = express();
 
@@ -12,9 +14,12 @@ export const initializeServer = async () => {
     await Database.connect(configuration.MONGO_URI); // Connect to MongoDB
     const connection = Database.getConnection();
     const iotDeviceRepository = new IotDeviceMongooseRepository(connection);
-
+    const routes = new Routes(
+        iotDeviceRepository
+    )
+    
     app.use(express.json());
-    app.use(iotDeviceRoutes(iotDeviceRepository));
+    routes.register(app)
 
     return app;
 };

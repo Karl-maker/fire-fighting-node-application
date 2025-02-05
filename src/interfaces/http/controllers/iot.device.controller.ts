@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { CreateIotDeviceUseCase } from "../use-cases/iot-device/create.iot.device.usecase";
-import { IotDeviceRepository } from "../repositories/iot.device.repository";
-import { logger } from "../utils/logging";
+import { CreateIotDeviceUseCase } from "../../../application/use-cases/iot-device/create.iot.device.usecase";
+import { IotDeviceRepository } from "../../../domain/repositories/iot.device.repository";
+import { logger } from "../../../utils/logging";
 
 export class IotDeviceController {
     constructor(private readonly repository: IotDeviceRepository) {}

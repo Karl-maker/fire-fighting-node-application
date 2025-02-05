@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app, initializeServer } from "../../app"; // Ensure this imports your Express app correctly
+import { app, initializeServer } from "../../interfaces/server"; // Ensure this imports your Express app correctly
 import { IOT_DEVICE_ROUTE } from "../../domain/constants/routes";
 import { DeviceType } from "../../domain/types/enums/iot.device.enum";
 import { Database } from "../../config/database";
