@@ -11,7 +11,8 @@ export class CreateIotDeviceUseCase {
     async execute(name: string, type: string, metadata: Record<string, number> = {}) : Promise<IotDevice> {
 
         if(!isValidMetadata(metadata)) throw new ValidationException('Invalid metadata')
-        if(name === "")  throw new ValidationException('Name cannot be empty')
+        if(name === "" || typeof name === 'undefined')  throw new ValidationException('Name cannot be empty')
+        if(type === "" || typeof type === 'undefined')  throw new ValidationException('Type cannot be empty')
 
         const iotDevice = new IotDevice({
             id: null,

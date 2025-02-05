@@ -42,7 +42,7 @@ describe("POST /iot-devices", () => {
     });
 
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe("Validation error");
+    expect(res.body.error).toBe("Validation Error");
   });
 
 });

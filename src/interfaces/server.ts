@@ -1,4 +1,4 @@
-import express from "express";
+import express, { ErrorRequestHandler } from "express";
 import { iotDeviceRoutes } from "../interfaces/http/routes/iot.device.routes";
 import { configuration } from "../config";
 import { IotDeviceMongooseRepository } from "../infrastructure/mongoose/repositories/iot.device.mongoose.repository";
@@ -6,6 +6,7 @@ import { Database } from "../config/database";
 import { logger } from "../utils/logging";
 import { Routes } from "./routes";
 import { register } from "module";
+import errorHandler from "./middlewares/error.middleware";
 
 export const app = express();
 
@@ -20,6 +21,7 @@ export const initializeServer = async () => {
     
     app.use(express.json());
     routes.register(app)
+    app.use(errorHandler as unknown as ErrorRequestHandler)
 
     return app;
 };

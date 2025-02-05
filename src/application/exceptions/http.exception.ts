@@ -1,5 +1,7 @@
 export class HttpException extends Error {
-    constructor(public status: number, ...error: any[]) {
-        super(error[0]);
+    constructor(name: string, message: string) {
+        super(message);
+        this.name = "ValidationException"; // Important for error handler
+        Object.setPrototypeOf(this, HttpException.prototype);
     }
 }
