@@ -29,13 +29,13 @@ jobs:
       - name: Set up Node.js 🏗️
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22  
           cache: 'pnpm'
 
       - name: Install Dependencies 📦
         run: |
           corepack enable
-          pnpm install
+          pnpm install 
 
       - name: Build Docker Image 🐋 
         run: docker build -t app .
@@ -52,10 +52,10 @@ jobs:
         run: sleep 10 
 
       - name: Run Unit Tests 🧪
-        run: pnpm test:unit
+        run: pnpm test:unit  
 
       - name: Run End-to-End Tests 🔥
-        run: pnpm test:e2e
+        run: pnpm test:e2e  
 
       - name: Stop Docker Container 🛑
-        run: docker stop app-container
+        run: docker stop app-container  
