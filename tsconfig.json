@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
+    "outDir": "./dist",
+    "rootDir": "./",
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true
-  }
+  },
+    "include": [
+      "src/**/*",
+      "jest.config.ts",   
+      "jest.e2e.config.ts" 
+    ]
 }
