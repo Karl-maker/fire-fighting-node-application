@@ -46,6 +46,7 @@ jobs:
             -e NODE_ENV="test" \
             -e PORT=3000 \
             -e TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
+            -e MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
             app
 
       - name: Wait for Server to Start ⏳
