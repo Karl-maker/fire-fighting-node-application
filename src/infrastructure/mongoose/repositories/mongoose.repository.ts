@@ -4,6 +4,8 @@ import { Entity } from "../../../domain/types/interfaces/base.entity";
 import { FindParams, FindResponse } from "../../../domain/types/types/repository.type";
 import { mapFindMongooseFilters } from "../../../utils/repository/map.find.mongoose.filters.util";
 import { logger } from "../../../utils/logging";
+import { mapFindMongooseSort } from "../../../utils/repository/map.find.mongoose.sort.util";
+import { mapFindMongoosePagination } from "../../../utils/repository/map.find.mongoose.pagniation.util";
 
 
 export abstract class MongooseRepository<
@@ -18,11 +20,29 @@ export abstract class MongooseRepository<
         this.model = db.model<D>(schemaName, schema);
     }
 
-    async find(params?: FindParams<SortByKeys, FilterByKeys> | undefined): Promise<FindResponse<E>> {
-        const filters = params?.filters ? mapFindMongooseFilters(params?.filters) : {};
-        const result = await this.model.find(filters)
-        throw new Error()
-    }
+    async find(params?: FindParams<SortByKeys, FilterByKeys>): Promise<FindResponse<E>> {
+        const filters = mapFindMongooseFilters(params?.filters);
+    
+        const paginationOptions = mapFindMongoosePagination(params?.pageNumber, params?.pageSize);
+        const sortOptions = mapFindMongooseSort(params?.sortBy, params?.sortOrder);
+    
+        const result = await this.model.find(filters, {}, { sort: sortOptions, ...paginationOptions });
+    
+        const totalItems = await this.model.countDocuments(filters);
+        const pageSize = params?.pageSize ?? totalItems; 
+        const currentPage = params?.pageNumber ?? 1;
+        const totalPages = Math.ceil(totalItems / pageSize);
+    
+        return {
+            data: result.map((d) => this.mapModelToEntity(d)),
+            pagination: {
+                totalItems,
+                totalPages,
+                currentPage,
+                pageSize,
+            },
+        };
+    }    
 
     async save(device: E): Promise<E> {
         const saved = await this.model.create(device);
