@@ -5,7 +5,6 @@ import { IotDeviceMongooseRepository } from "../infrastructure/mongoose/reposito
 import { Database } from "../config/database";
 import { logger } from "../utils/logging";
 import { Routes } from "./routes";
-import { register } from "module";
 import errorHandler from "./middlewares/error.middleware";
 
 export const app = express();
