@@ -12,7 +12,8 @@ describe("CreateIotDeviceUseCase", () => {
 
     beforeEach(() => {
         repository = {
-            save: jest.fn(), // Mock the save method
+            save: jest.fn(), 
+            find: jest.fn(), 
         } as jest.Mocked<IotDeviceRepository>;
         useCase = new CreateIotDeviceUseCase(repository);
     });
