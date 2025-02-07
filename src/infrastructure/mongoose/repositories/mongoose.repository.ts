@@ -2,6 +2,8 @@ import { Connection, Document, Model } from "mongoose";
 import { Repository } from "../../../domain/repositories/repository";
 import { Entity } from "../../../domain/types/interfaces/base.entity";
 import { FindParams, FindResponse } from "../../../domain/types/types/repository.type";
+import { mapFindMongooseFilters } from "../../../utils/repository/map.find.mongoose.filters.util";
+import { logger } from "../../../utils/logging";
 
 
 export abstract class MongooseRepository<
@@ -17,7 +19,9 @@ export abstract class MongooseRepository<
     }
 
     async find(params?: FindParams<SortByKeys, FilterByKeys> | undefined): Promise<FindResponse<E>> {
-        throw new Error('')
+        const filters = params?.filters ? mapFindMongooseFilters(params?.filters) : {};
+        const result = await this.model.find(filters)
+        throw new Error()
     }
 
     async save(device: E): Promise<E> {
