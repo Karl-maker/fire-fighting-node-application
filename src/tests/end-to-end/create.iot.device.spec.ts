@@ -4,6 +4,7 @@ import { IOT_DEVICE_ROUTE } from "../../domain/constants/routes";
 import { DeviceType } from "../../domain/types/enums/iot.device.enum";
 import { Database } from "../../config/database";
 import { configuration } from "../../config";
+import { IOT_DEVICE_SCHEMA } from "../../domain/constants/schemas";
 
 // Example test for creating an IoT device end-to-end
 describe("POST /iot-devices", () => {
@@ -15,8 +16,11 @@ describe("POST /iot-devices", () => {
         await initializeServer();
     });
 
+    afterEach(async () => {
+        await Database.getConnection().model(IOT_DEVICE_SCHEMA).deleteMany({});
+    })
+
     afterAll(async () => {
-        // Disconnect from the database after the tests
         await Database.disconnect();
     });
 

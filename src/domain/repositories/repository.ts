@@ -8,5 +8,5 @@ export interface Repository<
     FilterByKeys
     > {
     save(entity: E): Promise<E>;
-    find(params?: FindParams<SortByKeys, FilterByKeys>): Promise<FindResponse<E>>
+    find(params?: FindParams<SortByKeys, FilterByKeys>): Promise<FindResponse<E>>;
 }
