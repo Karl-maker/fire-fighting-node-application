@@ -39,16 +39,16 @@ jobs:
 
       - name: Build Docker Image 🐋 
         run: docker build -t app .
-
+        
       - name: Run Unit Tests 🧪
         run: |
-          docker run --rm -it --name app-test-container \
+          docker run --rm --name app-test-container \
             -e NODE_ENV="test" \
             app pnpm test:unit
 
       - name: Run End-to-End Tests 🔥
         run: |
-          docker run --rm -it --name app-test-container -p 3000:3000 \
+          docker run --rm --name app-test-container -p 3000:3000 \
             -e NODE_ENV="test" \
             -e PORT=3000 \
             -e TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
