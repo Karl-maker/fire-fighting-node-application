@@ -53,13 +53,13 @@ To clone the project repository:
 1. Use the following command to clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/project-name.git
+   git clone https://github.com/[your-git-username]/fire-fighting-node-application.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd project-name
+   cd fire-fighting-node-application
    ```
 
 ### Setting Up Environment Variables
@@ -114,7 +114,8 @@ To run the application using Docker, follow these steps:
    After building the Docker image, you can run it:
 
    ```bash
-   docker run --env-file .env -p 3000:3000 project-name
+   docker run --env-file .env -p 3000:3000 fire-fighting-node-application
+
    ```
 
    This will run the app in a container, and the app will be accessible at `http://localhost:3000`.
@@ -193,7 +194,3 @@ We are happy to assist with any issues or questions regarding the setup and usag
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-This version of the `README.md` includes clear instructions for cloning the repository, setting up the `.env` file, explaining the importance of secret management, and details on how to contact the team for support. Let me know if you need further adjustments!
