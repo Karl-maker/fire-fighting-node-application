@@ -4,16 +4,18 @@ export type FindParams<SortByKeys, FilterByKey> = {
     sortBy?: keyof SortByKeys; 
     sortOrder?: SortOrder;
     
-    filters?: {
-      [K in keyof FilterByKey]?: {
-        exact?: FilterByKey[K]; 
-        contains?: string; 
-      };
-    };
+    filters?: Filters<FilterByKey>;
 
     pageNumber?: number; 
     pageSize?: number;
 };
+
+export type Filters<FilterByKey> = {
+  [K in keyof FilterByKey]?: {
+    exact?: FilterByKey[K]; 
+    contains?: string; 
+  };
+}
 
 export type Pagination = {
     totalItems: number; 
