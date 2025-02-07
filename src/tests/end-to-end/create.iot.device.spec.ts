@@ -31,9 +31,9 @@ describe("POST /iot-devices", () => {
 
     expect(res.status).toBe(201);
     expect(res.body.message).toBe("Device created successfully");
-    expect(res.body.iot_device).toHaveProperty("id");
-    expect(res.body.iot_device.name).toBe("Temp Sensor");
-    expect(res.body.iot_device.type).toBe(DeviceType.VALVE);
+    expect(res.body.iotDevice).toHaveProperty("id");
+    expect(res.body.iotDevice.name).toBe("Temp Sensor");
+    expect(res.body.iotDevice.type).toBe(DeviceType.VALVE);
   });
 
   it("should return a 400 error if required fields are missing", async () => {

@@ -17,9 +17,9 @@ export class IotDeviceController {
                 metadata
             } = req.body; 
 
-            const iot_device = await createUseCase.execute(name, type, metadata);
+            const iotDevice = await createUseCase.execute(name, type, metadata);
 
-            res.status(201).json({ message: "Device created successfully", iot_device });
+            res.status(201).json({ message: "Device created successfully", iotDevice });
         } catch (error) {
             next(error)
         }

@@ -1,12 +1,12 @@
 export type SortOrder = 'asc' | 'desc'; 
 
-export type FindParams<E> = {
-    sortBy?: keyof E; 
+export type FindParams<SortByKeys, FilterByKey> = {
+    sortBy?: keyof SortByKeys; 
     sortOrder?: SortOrder;
     
     filters?: {
-      [K in keyof E]?: {
-        exact?: E[K]; 
+      [K in keyof FilterByKey]?: {
+        exact?: FilterByKey[K]; 
         contains?: string; 
       };
     };

@@ -1,3 +1,4 @@
+import { IotDevice } from "../../entities/iot.device.entity";
 import { DeviceStatus, DeviceType } from "../enums/iot.device.enum";
 import { Location } from "./location.type";
 
@@ -15,3 +16,6 @@ export type IotDeviceConstructorInput = {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export type IotDeviceSortBy = Omit<IotDevice, 'metadata' | 'ipAddress' | 'location' | 'id'>
+export type IotDeviceFilterBy = Omit<IotDevice, 'id'>
