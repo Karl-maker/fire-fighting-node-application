@@ -38,25 +38,19 @@ jobs:
         run: pnpm install 
 
       - name: Build Docker Image 🐋 
-        run: docker build -t app  .
+        run: docker build -t app .
 
-      - name: Run Docker Container 🚀
+      - name: Run Unit Tests 🧪
         run: |
-          docker run --rm -d --name app-container -p 3000:3000 \
+          docker run --rm -it --name app-test-container \
+            -e NODE_ENV="test" \
+            app pnpm test:unit
+
+      - name: Run End-to-End Tests 🔥
+        run: |
+          docker run --rm -it --name app-test-container -p 3000:3000 \
             -e NODE_ENV="test" \
             -e PORT=3000 \
             -e TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
             -e MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
-            app
-
-      - name: Wait for Server to Start ⏳
-        run: sleep 10 
-
-      - name: Run Unit Tests 🧪
-        run: pnpm test:unit  
-
-      - name: Run End-to-End Tests 🔥
-        run: pnpm test:e2e  
-
-      - name: Stop Docker Container 🛑
-        run: docker stop app-container  
+            app pnpm test:e2e
