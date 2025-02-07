@@ -137,7 +137,7 @@ If you have a `docker-compose.yml` file for multi-container setups (e.g., if you
 To run the tests, use `pnpm` with Jest:
 
 ```bash
-pnpm test
+pnpm test:unit && pnpm test:e2e
 ```
 
 This will run the Jest test suite and output the results in your terminal.
@@ -165,7 +165,7 @@ This will transpile the TypeScript code and prepare the application for deployme
 ### Additional Notes
 
 - **Docker Volumes**: If you need persistent data storage, you can add volumes in your Docker setup. 
-- **CI/CD**: This project is designed to integrate with CI/CD pipelines (e.g., GitHub Actions, GitLab CI). You can configure your pipeline to install dependencies and run tests using the `pnpm install` and `pnpm test` commands.
+- **CI/CD**: This project is designed to integrate with CI/CD pipelines (e.g., GitHub Actions, GitLab CI). You can configure your pipeline to install dependencies and run tests using the `pnpm install` and `pnpm test:unit && pnpm test:e2e` commands.
 
 ---
 
