@@ -21,6 +21,7 @@ describe("GET /iot-devices", () => {
 
   beforeEach(async () => {
     await Database.getConnection().model(IOT_DEVICE_SCHEMA).deleteMany({});
+    await new Promise((resolve) => setTimeout(resolve, 500));
   });
 
   afterAll(async () => {
@@ -137,6 +138,8 @@ describe("GET /iot-devices", () => {
       new IotDevice({ id: null, name: "Device 2", firmwareVersion: "", type: DeviceType.VALVE, status: DeviceStatus.OFFLINE, createdAt: new Date(), updatedAt: new Date(), lastSeenAt: null, ipAddress: null, position: null, location: null, metadata: {} })
     );
 
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
     const res = await request(app).get(IOT_DEVICE_ROUTE);
     expect(res.status).toBe(200);
     expect(res.body.data).toHaveLength(2);
