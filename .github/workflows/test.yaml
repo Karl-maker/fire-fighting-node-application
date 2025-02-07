@@ -38,16 +38,16 @@ jobs:
         run: pnpm install 
 
       - name: Build Docker Image 🐋 
-        run: |
-          docker build --build-arg NODE_ENV="test" \
-                       --build-arg PORT=3000 \
-                       --build-arg TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
-                       --build-arg MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
-                       -t app .
+        run: docker build -t app  .
 
       - name: Run Docker Container 🚀
         run: |
-          docker run --rm -d --name app-container -p 3000:3000 app
+          docker run --rm -d --name app-container -p 3000:3000 \
+            -e NODE_ENV="test" \
+            -e PORT=3000 \
+            -e TEST_MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
+            -e MONGO_URI=${{ secrets.TEST_MONGO_URI }} \
+            app
 
       - name: Wait for Server to Start ⏳
         run: sleep 10 

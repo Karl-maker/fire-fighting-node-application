@@ -27,9 +27,12 @@ RUN pnpm install --prod --frozen-lockfile
 
 EXPOSE 3000
 
-# Copy only necessary files
-COPY --from=build /app/src ./src  
-COPY . .  
+ENV NODE_ENV=${NODE_ENV}
+ENV PORT=${PORT}
+ENV MONGO_URI=${MONGO_URI}
+ENV TEST_MONGO_URI=${TEST_MONGO_URI}
 
-# Ensure runtime environment variables are passed at runtime
+COPY --from=build /app/src ./src  
+COPY . . 
+
 CMD ["sh", "-c", "pnpm start"]
